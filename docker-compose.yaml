@@ -19,8 +19,9 @@ services:
       - app-network
     environment:
       - DATABASE_URL=mongodb://book-service-db:27017/books
-    depends_on:
-      - book-service-db
+    # depends_on:
+    #   - book-service-db
+    # pull_policy: always
 
 
   loan-service:
@@ -33,6 +34,9 @@ services:
       - app-network
     environment:
       - BOOK_SERVICE_URL=http://book-service:3000
+    # pull_policy: always
+    # depends_on:
+    #   - book-service-db
   
   nginx:
     image: nginx:latest
